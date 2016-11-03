@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Contact Book sample application working Offline",
   "main": "app.js",
+  "scripts": {
+    "serve-front": "http-server -o",
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tabalinas/contact-book-offline.git"
@@ -17,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/tabalinas/contact-book-offline/issues"
   },
-  "homepage": "https://github.com/tabalinas/contact-book-offline#readme"
+  "homepage": "https://github.com/tabalinas/contact-book-offline#readme",
+  "devDependencies": {
+    "http-server": "^0.9.0",
+  }
 }
