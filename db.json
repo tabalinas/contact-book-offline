@@ -1,0 +1,7 @@
+{
+    "contacts": [
+        { "_id": 1, "firstname": "Artem", "lastname": "Tabalin", "phone": "+33 6 12 34 56 78" },
+        { "_id": 2, "firstname": "Jack", "lastname": "Husbur", "phone": "+33 6 12 34 56 89" },
+        { "_id": 3, "firstname": "Jane", "lastname": "Christy", "phone": "+33 6 12 34 56 90" }
+    ]
+}
