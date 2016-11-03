@@ -1,0 +1,21 @@
+{
+  "name": "contact-book-offline",
+  "version": "1.0.0",
+  "description": "Contact Book sample application working Offline",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tabalinas/contact-book-offline.git"
+  },
+  "keywords": [
+    "serviceworker",
+    "offline",
+    "appcache"
+  ],
+  "author": "Artem Tabalin <tabalinas@gmail.com> (http://tabalin.net/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tabalinas/contact-book-offline/issues"
+  },
+  "homepage": "https://github.com/tabalinas/contact-book-offline#readme"
+}
