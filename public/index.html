@@ -2,9 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Contact Book</title>
+    <link href="css/style.css">
 </head>
 <body>
-    <h1>Test</h1>
+    <header>
+        <h1>Contact Book</h1>
+    </header>
+
+    <main>
+        <section>
+            <button id="addContact" type="button">Add Contact</button>
+            <form id="contactDetails" class="contact-details hidden">
+                <div class="contact-field">
+                    <label for="firstname">First name:</label>
+                    <input id="firstname" />
+                </div>
+                <div class="contact-field">
+                    <label for="lastname">Last name:</label>
+                    <input id="lastname" />
+                </div>
+                <div class="contact-field">
+                    <label for="phone">Phone:</label>
+                    <input id="phone" type="tel" />
+                </div>
+                <div class="contact-controls">
+                    <button id="saveContact" type="submit">Save</button>
+                    <button id="cancelEdit" type="button">Cancel</button>
+                </div>
+            </form>
+        </section>
+
+        <section>
+            <ul id="contactList" class="contact-list">
+                <li id="contactListItem" class="contact-list-item">
+                    <div class="contact-name"></div>
+                    <div class="contact-phone"></div>
+                    <div class="contact-edit" title="Edit contact"></div>
+                    <div class="contact-remove" title="Delete contact"></div>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            new ContactBook();
+        });
+    </script>
 </body>
 </html>
