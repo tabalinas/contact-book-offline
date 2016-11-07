@@ -13,7 +13,7 @@
     <main>
         <section>
             <button id="addContact" type="button">Add Contact</button>
-            <form id="contactDetails" class="contact-details hidden">
+            <form id="contactDetails" class="contact-details" style="display: none;">
                 <div class="contact-field">
                     <label for="firstname">First name:</label>
                     <input id="firstname" />
@@ -27,6 +27,7 @@
                     <input id="phone" type="tel" />
                 </div>
                 <div class="contact-controls">
+                    <input type="hidden" id="contactid" />
                     <button id="saveContact" type="submit">Save</button>
                     <button id="cancelEdit" type="button">Cancel</button>
                 </div>
@@ -35,7 +36,7 @@
 
         <section>
             <ul id="contactList" class="contact-list">
-                <li id="contactListItem" class="contact-list-item">
+                <li class="contact-list-item">
                     <div class="contact-name"></div>
                     <div class="contact-phone"></div>
                     <div class="contact-edit" title="Edit contact"></div>
@@ -45,6 +46,7 @@
         </section>
     </main>
 
+    <script src="js/store.js"></script>
     <script src="js/app.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
