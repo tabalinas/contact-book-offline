@@ -1,4 +1,4 @@
-(function(global, Store) {
+(function(Store) {
 
     var CONTACT_ID_ATTR_NAME = "data-contractid";
 
@@ -15,7 +15,7 @@
     };
 
     ContactBook.prototype.initStore = function() {
-        this.store = new Store();
+        this.store = new Store("contacts");
     };
 
     ContactBook.prototype.initElements = function() {
@@ -49,8 +49,7 @@
 
         this.contactList.addEventListener("click", ((function(event) {
             var getContractId = function() {
-                var contactIdAttr = event.target.parentElement.getAttribute(CONTACT_ID_ATTR_NAME);
-                return parseInt(contactIdAttr, 10);
+                return event.target.parentElement.getAttribute(CONTACT_ID_ATTR_NAME);
             };
 
             if(event.target.className === "contact-edit") {
@@ -68,15 +67,18 @@
     };
 
     ContactBook.prototype.renderContactList = function() {
-        var elements = document.createDocumentFragment();
-        var contacts = this.store.getAll();
+        var contactList = this.contactList;
 
-        contacts.forEach((function(contact) {
-            elements.appendChild(this.createContact(contact))
-        }).bind(this));
+        this.store.getAll().then(function(contacts) {
+            var elements = document.createDocumentFragment();
 
-        this.contactList.innerHTML = "";
-        this.contactList.appendChild(elements);
+            contacts.forEach(function(contact) {
+                elements.appendChild(this.createContact(contact))
+            }.bind(this));
+
+            contactList.innerHTML = "";
+            contactList.appendChild(elements);
+        }.bind(this));
     };
 
     ContactBook.prototype.createContact = function(contact) {
@@ -94,20 +96,26 @@
     };
 
     ContactBook.prototype.editContact = function(contactId) {
-        this.setContactDetails(this.store.get(contactId));
-        this.toggleContactForm(true);
+        this.store.get(contactId).then(function(contact) {
+            this.setContactDetails(contact);
+            this.toggleContactForm(true);
+        }.bind(this));
     };
 
     ContactBook.prototype.saveContact = function() {
         var contact = this.getContactDetails();
-        this.store.save(contact);
-        this.toggleContactForm(false);
-        this.refresh();
+
+        this.store.save(contact).then(function() {
+            this.toggleContactForm(false);
+            this.refresh();
+        }.bind(this));
     };
 
     ContactBook.prototype.removeContact = function(contactId) {
-        this.store.remove(contactId);
-        this.refresh();
+
+        this.store.remove(contactId).then(function() {
+            this.refresh();
+        }.bind(this));
     };
 
     ContactBook.prototype.cancelEdit = function() {
@@ -116,7 +124,7 @@
 
     ContactBook.prototype.getContactDetails = function() {
         return {
-            _id: parseInt(this.contactIdField.value || "0", 10),
+            _id: this.contactIdField.value,
             firstName: this.firstNameField.value,
             lastName: this.lastNameField.value,
             phone: this.phoneField.value
@@ -124,7 +132,7 @@
     };
 
     ContactBook.prototype.setContactDetails = function(contactDetails) {
-        this.contactIdField.value = contactDetails._id || 0;
+        this.contactIdField.value = contactDetails._id || "";
         this.firstNameField.value = contactDetails.firstName || "";
         this.lastNameField.value = contactDetails.lastName || "";
         this.phoneField.value = contactDetails.phone || "";
@@ -135,6 +143,6 @@
     };
 
 
-    global.ContactBook = ContactBook;
+    window.ContactBook = ContactBook;
 
-}(this, Store));
+}(Store));

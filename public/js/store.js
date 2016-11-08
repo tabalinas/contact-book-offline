@@ -1,35 +1,52 @@
-(function(global) {
+(function(PouchDB) {
 
-    function Store() { }
-
-    // TODO: replace with real data storage
-    var contacts = [
-        { _id: 1, firstName: "Artem", lastName: "Tabalin", phone: "+33 6 12 34 56 78" },
-        { _id: 2, firstName: "Jack", lastName: "Husbur", phone: "+33 6 12 34 56 89" },
-        { _id: 3, firstName: "Jane", lastName: "Christy", phone: "+33 6 12 34 56 90" }
-    ];
+    function Store(name) {
+        this.db = new PouchDB(name);
+    }
 
     Store.prototype.getAll = function() {
-        return contacts;
+        return this.db.allDocs({ include_docs: true })
+            .then(function(db) {
+                return db.rows.map(function(row) {
+                    return row.doc;
+                });
+            });
     };
 
     Store.prototype.get = function(id) {
-        return contacts.filter(function(c) {
-            return c._id === id;
-        })[0];
+        return this.db.get(id);
     };
 
-    Store.prototype.save = function(contact) {
-        contacts.push(contact);
+    Store.prototype.save = function(item) {
+        var db = this.db;
+
+        if(!item._id)
+            return db.post(item);
+
+        return db.get(item._id)
+            .then(function(updatingItem) {
+                db.extend(updatingItem, item);
+                return db.put(updatingItem);
+            });
     };
 
     Store.prototype.remove = function(id) {
-        contacts = contacts.filter(function(c) {
-            return c._id !== id;
-        });
+        var db = this.db;
+
+        return db.get(id)
+            .then(function(item) {
+                return db.remove(item);
+            });
     };
 
-    global.Store = Store;
+    Store.prototype.extend = function(target, source) {
+        for(var key in source) {
+            if(source.hasOwnProperty(key)) {
+                target[key] = source[key];
+            }
+        }
+    };
 
+    window.Store = Store;
 
-}(this));
+}(PouchDB));
