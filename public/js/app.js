@@ -4,7 +4,7 @@
 
     function ContactBook() {
         this.init();
-        this.render();
+        this.refresh();
     }
 
     ContactBook.prototype.init = function() {
@@ -33,12 +33,16 @@
     };
 
     ContactBook.prototype.initItemTemplate = function() {
-        var contactListItem = this.contactList.firstChild;
+        var contactListItem = this.contactList.querySelector("li");
         this.contactList.removeChild(contactListItem);
         this._contactTemplate = contactListItem;
     };
 
     ContactBook.prototype.attachHandlers = function() {
+        this.contactDetailsForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+        });
+
         this.addContactButton.addEventListener("click", this.addContact.bind(this));
         this.saveContactButton.addEventListener("click", this.saveContact.bind(this));
         this.cancelEditButton.addEventListener("click", this.cancelEdit.bind(this));
@@ -59,7 +63,7 @@
         }).bind(this)));
     };
 
-    ContactBook.prototype.render = function() {
+    ContactBook.prototype.refresh = function() {
         this.renderContactList();
     };
 
@@ -86,6 +90,7 @@
     ContactBook.prototype.addContact = function() {
         this.setContactDetails({});
         this.toggleContactForm(true);
+        this.refresh();
     };
 
     ContactBook.prototype.editContact = function(contactId) {
@@ -97,10 +102,12 @@
         var contact = this.getContactDetails();
         this.store.save(contact);
         this.toggleContactForm(false);
+        this.refresh();
     };
 
     ContactBook.prototype.removeContact = function(contactId) {
         this.store.remove(contactId);
+        this.refresh();
     };
 
     ContactBook.prototype.cancelEdit = function() {
@@ -109,18 +116,18 @@
 
     ContactBook.prototype.getContactDetails = function() {
         return {
-            _id: parseInt(this.contactIdField.val() || "0", 10),
-            firstName: this.firstNameField.val(),
-            lastName: this.lastNameField.val(),
-            phone: this.phoneField.val()
+            _id: parseInt(this.contactIdField.value || "0", 10),
+            firstName: this.firstNameField.value,
+            lastName: this.lastNameField.value,
+            phone: this.phoneField.value
         };
     };
 
     ContactBook.prototype.setContactDetails = function(contactDetails) {
-        this.contactIdField.val(contactDetails._id || 0);
-        this.firstNameField.val(contactDetails.firstName);
-        this.lastNameField.val(contactDetails.lastName);
-        this.phoneField.val(contactDetails.phone);
+        this.contactIdField.value = contactDetails._id || 0;
+        this.firstNameField.value = contactDetails.firstName || "";
+        this.lastNameField.value = contactDetails.lastName || "";
+        this.phoneField.value = contactDetails.phone || "";
     };
 
     ContactBook.prototype.toggleContactForm = function(isShowing) {
