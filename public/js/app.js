@@ -1,6 +1,7 @@
 (function(Store) {
 
     var CONTACT_ID_ATTR_NAME = "data-contractid";
+    var CONTACT_REMOVE_CONFIRM = "Are you sure?";
 
     function ContactBook() {
         this.init();
@@ -112,6 +113,8 @@
     };
 
     ContactBook.prototype.removeContact = function(contactId) {
+        if(!window.confirm(CONTACT_REMOVE_CONFIRM))
+            return;
 
         this.store.remove(contactId).then(function() {
             this.refresh();
