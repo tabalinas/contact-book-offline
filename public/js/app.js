@@ -2,6 +2,7 @@
 
     var CONTACT_ID_ATTR_NAME = "data-contractid";
     var CONTACT_REMOVE_CONFIRM = "Are you sure?";
+    var NO_CONTACTS_TEXT = "No contacts";
 
     function ContactBook() {
         this.init();
@@ -68,18 +69,30 @@
     };
 
     ContactBook.prototype.renderContactList = function() {
-        var contactList = this.contactList;
-
         this.store.getAll().then(function(contacts) {
-            var elements = document.createDocumentFragment();
-
-            contacts.forEach(function(contact) {
-                elements.appendChild(this.createContact(contact))
-            }.bind(this));
-
-            contactList.innerHTML = "";
-            contactList.appendChild(elements);
+            this.contactList.innerHTML = "";
+            this.contactList.appendChild(this.createContactList(contacts));
         }.bind(this));
+    };
+
+    ContactBook.prototype.createContactList = function(contacts) {
+        if(!contacts.length)
+            return this.createNoDataItem();
+
+        var result = document.createDocumentFragment();
+
+        contacts.forEach(function(contact) {
+            result.appendChild(this.createContact(contact))
+        }.bind(this));
+
+        return result;
+    };
+
+    ContactBook.prototype.createNoDataItem = function() {
+        var result = document.createElement("div");
+        result.className = "contact-list-empty";
+        result.textContent = NO_CONTACTS_TEXT;
+        return result;
     };
 
     ContactBook.prototype.createContact = function(contact) {
