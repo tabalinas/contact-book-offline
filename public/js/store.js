@@ -18,10 +18,17 @@
     };
 
     Store.prototype.save = function(item) {
-        var db = this.db;
+        return item._id
+            ? this.db.update(item)
+            : this.db.add(item);
+    };
 
-        if(!item._id)
-            return db.post(item);
+    Store.prototype.add = function(item) {
+        return this.db.post(item);
+    };
+
+    Store.prototype.update = function(item) {
+        var db = this.db;
 
         return db.get(item._id)
             .then(function(updatingItem) {
