@@ -1,23 +1,20 @@
-(function(Store) {
+(function() {
 
     var CONTACT_ID_ATTR_NAME = "data-contractid";
     var CONTACT_REMOVE_CONFIRM = "Are you sure?";
     var NO_CONTACTS_TEXT = "No contacts";
 
-    function ContactBook() {
+    function ContactBook(store) {
+        this.store = store;
+
         this.init();
         this.refresh();
     }
 
     ContactBook.prototype.init = function() {
-        this.initStore();
         this.initElements();
         this.initItemTemplate();
         this.attachHandlers();
-    };
-
-    ContactBook.prototype.initStore = function() {
-        this.store = new Store("contacts");
     };
 
     ContactBook.prototype.initElements = function() {
@@ -161,4 +158,4 @@
 
     window.ContactBook = ContactBook;
 
-}(Store));
+}(SyncedStore));

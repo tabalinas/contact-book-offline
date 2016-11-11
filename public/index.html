@@ -48,10 +48,11 @@
 
     <script src="js/ext/pouchdb.min.js"></script>
     <script src="js/store.js"></script>
+    <script src="js/syncedStore.js"></script>
     <script src="js/app.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            new ContactBook();
+            new ContactBook(new SyncedStore("contacts", "localhost:3000/contacts"));
         });
     </script>
 </body>
