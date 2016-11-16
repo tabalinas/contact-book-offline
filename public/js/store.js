@@ -19,8 +19,8 @@
 
     Store.prototype.save = function(item) {
         return item._id
-            ? this.db.update(item)
-            : this.db.add(item);
+            ? this.update(item)
+            : this.add(item);
     };
 
     Store.prototype.add = function(item) {
@@ -28,22 +28,18 @@
     };
 
     Store.prototype.update = function(item) {
-        var db = this.db;
-
-        return db.get(item._id)
+        return this.db.get(item._id)
             .then(function(updatingItem) {
-                db.extend(updatingItem, item);
-                return db.put(updatingItem);
-            });
+                this.extend(updatingItem, item);
+                return this.db.put(updatingItem);
+            }.bind(this));
     };
 
     Store.prototype.remove = function(id) {
-        var db = this.db;
-
-        return db.get(id)
+        return this.db.get(id)
             .then(function(item) {
-                return db.remove(item);
-            });
+                return this.db.remove(item);
+            }.bind(this));
     };
 
     Store.prototype.extend = function(target, source) {
