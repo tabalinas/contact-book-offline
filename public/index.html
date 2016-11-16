@@ -52,7 +52,7 @@
     <script src="js/app.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            new ContactBook(new SyncedStore("contacts", "localhost:3000/contacts"));
+            new ContactBook(new SyncedStore("contacts", "http://localhost:3000/contacts"));
         });
     </script>
 </body>
