@@ -6,7 +6,7 @@
   "scripts": {
     "serve": "npm-run-all -p serve-front serve-backend",
     "serve-front": "http-server -o",
-    "serve-backend": "json-server --watch db.json"
+    "serve-backend": "json-server --watch db.json -i '_id'"
   },
   "repository": {
     "type": "git",
