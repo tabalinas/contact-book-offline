@@ -3,48 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Contact Book</title>
-    <link href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <h1>Contact Book</h1>
-    </header>
+    <div class="contact-book">
+        <header class="contact-book-header">
+            <h1>Contact Book</h1>
+        </header>
 
-    <main>
-        <section>
-            <button id="addContact" type="button">Add Contact</button>
-            <form id="contactDetails" class="contact-details" style="display: none;">
-                <div class="contact-field">
-                    <label for="firstname">First name:</label>
-                    <input id="firstname" />
-                </div>
-                <div class="contact-field">
-                    <label for="lastname">Last name:</label>
-                    <input id="lastname" />
-                </div>
-                <div class="contact-field">
-                    <label for="phone">Phone:</label>
-                    <input id="phone" type="tel" />
-                </div>
-                <div class="contact-controls">
+        <main class="contact-book-main">
+            <section class="contact-list-section">
+                <ul id="contactList" class="contact-list">
+                    <li class="contact-list-item">
+                        <div class="contact-name"></div>
+                        <div class="contact-phone"></div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="contact-details-section">
+                <form id="contactDetails" class="contact-details">
                     <input type="hidden" id="contactid" />
-                    <button id="saveContact" type="submit">Save</button>
+                    <div class="contact-field">
+                        <label for="firstname">First name</label>
+                        <input id="firstname" />
+                    </div>
+                    <div class="contact-field">
+                        <label for="lastname">Last name</label>
+                        <input id="lastname" />
+                    </div>
+                    <div class="contact-field">
+                        <label for="phone">Phone</label>
+                        <input id="phone" type="tel" autocomplete="off" />
+                    </div>
+                </form>
+                <div class="contact-controls">
+                    <button id="addContact" class="contact-add" type="button">+ Add</button>
+                    <button id="removeContact" class="contact-remove" type="button">Delete</button>
+                    <button id="editContact" type="button">Edit</button>
                     <button id="cancelEdit" type="button">Cancel</button>
+                    <button id="saveContact" type="submit">Save</button>
                 </div>
-            </form>
-        </section>
-
-        <section>
-            <ul id="contactList" class="contact-list">
-                <li class="contact-list-item">
-                    <div class="contact-name"></div>
-                    <div class="contact-phone"></div>
-                    <div class="contact-edit" title="Edit contact">Edit</div>
-                    <div class="contact-remove" title="Delete contact">Delete</div>
-                </li>
-            </ul>
-        </section>
-    </main>
+            </section>
+        </main>
+    </div>
 
     <script src="js/ext/pouchdb.min.js"></script>
     <script src="js/store.js"></script>
