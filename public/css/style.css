@@ -1,0 +1,147 @@
+html {
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.5;
+    font-size: 18px;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    color: #566b78;
+    background: #4d384b;
+}
+
+button, input {
+    font-size: .9em;
+    padding: .5em;
+    color: #333;
+    cursor: pointer;
+}
+
+input[disabled] {
+    color: #566b78;
+    cursor: text;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2em;
+    font-weight: normal;
+    color: #fff;
+}
+
+.contact-book {
+    position: relative;
+    width: 40em;
+    height: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.contact-book * {
+    box-sizing: border-box;
+}
+
+.contact-book-header {
+    padding: 1em;
+}
+
+.contact-book-main {
+    position: absolute;
+    top: 5em;
+    bottom: 0;
+    background: #fff;
+}
+
+.contact-list-section {
+    float: left;
+    overflow: auto;
+    width: 18em;
+    height: 100%;
+    border-right: 1px solid #ddd;
+}
+
+.contact-details-section {
+    float: right;
+    width: 22em;
+    height: 100%;
+    padding: 1em;
+}
+
+
+/* Contact list */
+
+.contact-list {
+    margin: 0;
+    padding-left: 0;
+}
+
+.contact-list-item,
+.contact-list-empty {
+    padding: 1em;
+    list-style: none;
+}
+
+.contact-list-item + .contact-list-item {
+    border-top: 1px solid #ddd;
+}
+
+.contact-list-item {
+    transition: background-color 400ms;
+}
+
+.contact-list-item:hover {
+    background: #f9f9f9;
+    cursor: pointer;
+    transition: none;
+}
+
+.contact-name {
+    color: #333;
+}
+
+.contact-phone {
+    color: #888;
+}
+
+
+/* Contact form */
+
+.contact-field + .contact-field {
+    padding-top: .5em;
+}
+
+.contact-field label {
+    display: inline-block;
+    width: 100%;
+}
+
+.contact-field input {
+    width: 100%;
+}
+
+.contact-controls {
+    margin-top: 1em;
+}
+
+.contact-controls button {
+    float: right;
+    width: 5em;
+}
+
+.contact-controls button + button {
+    margin-left: .5em;
+}
+
+.contact-controls .contact-add {
+    float: left;
+}
+
+.contact-remove {
+    color: red;
+}
