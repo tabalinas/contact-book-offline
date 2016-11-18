@@ -1,0 +1,10 @@
+CACHE MANIFEST
+# v1 2016-11-01
+
+CACHE:
+index.html
+css/style.css
+js/ext/pouchdb.min.js
+js/syncedStore.js
+js/store.js
+js/app.js
