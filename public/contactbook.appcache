@@ -5,6 +5,5 @@ CACHE:
 index.html
 css/style.css
 js/ext/pouchdb.min.js
-js/syncedStore.js
 js/store.js
 js/app.js

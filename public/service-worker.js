@@ -6,7 +6,6 @@ var resourcesToCache = [
     '/js/ext/pouchdb.min.js',
     '/js/register-service-worker.js',
     '/js/store.js',
-    '/js/syncedStore.js',
     '/js/app.js'
 ];
 
