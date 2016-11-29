@@ -60,6 +60,10 @@
 
     ContactBook.prototype.renderContactList = function() {
         this.store.getAll().then(function(contacts) {
+            contacts.sort(function(contact1, contact2) {
+                 return (contact1.firstName + contact1.lastName).localeCompare(contact2.firstName + contact2.firstName);
+            });
+
             this.contactList.innerHTML = "";
             this.contactList.appendChild(this.createContactList(contacts));
         }.bind(this));
