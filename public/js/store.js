@@ -1,7 +1,14 @@
 (function(PouchDB) {
 
-    function Store(name) {
+    function Store(name, remote, onChange) {
         this.db = new PouchDB(name);
+
+        PouchDB.sync(name, remote + '/' + name, {
+            live: true,
+            retry: true
+        }).on('change', function (info) {
+            onChange(info);
+        });
     }
 
     Store.prototype.getAll = function() {

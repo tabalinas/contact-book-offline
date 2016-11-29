@@ -1,1 +1,4 @@
 node_modules
+db
+config.json
+log.txt

@@ -4,8 +4,10 @@
     var CONTACT_REMOVE_CONFIRM = "Are you sure?";
     var NO_CONTACTS_TEXT = "No contacts";
 
-    function ContactBook(store) {
-        this.store = store;
+    function ContactBook(storeClass, remote) {
+        this.store = new storeClass("contacts", remote, function() {
+            this.refresh();
+        }.bind(this));
 
         this.init();
         this.refresh();
@@ -201,4 +203,4 @@
 
     window.ContactBook = ContactBook;
 
-}(SyncedStore));
+}());
