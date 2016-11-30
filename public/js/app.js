@@ -1,12 +1,12 @@
 
-var CONTACT_ID_ATTR_NAME = "data-contractid";
-var CONTACT_REMOVE_CONFIRM = "Are you sure?";
-var NO_CONTACTS_TEXT = "No contacts";
+var CONTACT_ID_ATTR_NAME = 'data-contractid';
+var CONTACT_REMOVE_CONFIRM = 'Are you sure?';
+var NO_CONTACTS_TEXT = 'No contacts';
 
 class ContactBook {
 
     constructor(storeClass, remote) {
-        this.store = new storeClass("contacts", remote, () => {
+        this.store = new storeClass('contacts', remote, () => {
             this.refresh();
         });
 
@@ -22,37 +22,37 @@ class ContactBook {
     }
 
     initElements() {
-        this.contactList = document.getElementById("contactList");
+        this.contactList = document.getElementById('contactList');
 
-        this.contactDetailsForm = document.getElementById("contactDetails");
-        this.contactIdField = document.getElementById("contactid");
-        this.firstNameField = document.getElementById("firstname");
-        this.lastNameField = document.getElementById("lastname");
-        this.phoneField = document.getElementById("phone");
+        this.contactDetailsForm = document.getElementById('contactDetails');
+        this.contactIdField = document.getElementById('contactid');
+        this.firstNameField = document.getElementById('firstname');
+        this.lastNameField = document.getElementById('lastname');
+        this.phoneField = document.getElementById('phone');
 
-        this.addContactButton = document.getElementById("addContact");
-        this.editContactButton = document.getElementById("editContact");
-        this.removeContactButton = document.getElementById("removeContact");
-        this.saveContactButton = document.getElementById("saveContact");
-        this.cancelEditButton = document.getElementById("cancelEdit");
+        this.addContactButton = document.getElementById('addContact');
+        this.editContactButton = document.getElementById('editContact');
+        this.removeContactButton = document.getElementById('removeContact');
+        this.saveContactButton = document.getElementById('saveContact');
+        this.cancelEditButton = document.getElementById('cancelEdit');
     }
 
     initItemTemplate() {
-        var contactListItem = this.contactList.querySelector("li");
+        var contactListItem = this.contactList.querySelector('li');
         this.contactList.removeChild(contactListItem);
         this._contactTemplate = contactListItem;
     }
 
     attachHandlers() {
-        this.contactDetailsForm.addEventListener("submit", event => {
+        this.contactDetailsForm.addEventListener('submit', event => {
             event.preventDefault();
         });
 
-        this.addContactButton.addEventListener("click", () => { this.addContact() });
-        this.editContactButton.addEventListener("click", () => { this.editContact() });
-        this.removeContactButton.addEventListener("click", () => { this.removeContact() });
-        this.saveContactButton.addEventListener("click", () => { this.saveContact() });
-        this.cancelEditButton.addEventListener("click", () => { this.cancelEdit() });
+        this.addContactButton.addEventListener('click', () => { this.addContact() });
+        this.editContactButton.addEventListener('click', () => { this.editContact() });
+        this.removeContactButton.addEventListener('click', () => { this.removeContact() });
+        this.saveContactButton.addEventListener('click', () => { this.saveContact() });
+        this.cancelEditButton.addEventListener('click', () => { this.cancelEdit() });
     }
 
     refresh() {
@@ -69,7 +69,7 @@ class ContactBook {
     }
 
     renderContactList(contacts) {
-        this.contactList.innerHTML = "";
+        this.contactList.innerHTML = '';
         this.contactList.appendChild(this.createContactList(contacts));
     }
 
@@ -87,8 +87,8 @@ class ContactBook {
     }
 
     createNoDataItem() {
-        var result = document.createElement("li");
-        result.className = "contact-list-empty";
+        var result = document.createElement('li');
+        result.className = 'contact-list-empty';
         result.textContent = NO_CONTACTS_TEXT;
         return result;
     }
@@ -96,9 +96,9 @@ class ContactBook {
     createContact(contact) {
         var result = this._contactTemplate.cloneNode(true);
         result.setAttribute(CONTACT_ID_ATTR_NAME, contact._id);
-        result.querySelector(".contact-name").innerText = contact.firstName + " " + contact.lastName;
-        result.querySelector(".contact-phone").innerText = contact.phone;
-        result.addEventListener("click", event => { this.showContact(event) });
+        result.querySelector('.contact-name').innerText = contact.firstName + ' ' + contact.lastName;
+        result.querySelector('.contact-phone').innerText = contact.phone;
+        result.addEventListener('click', event => { this.showContact(event) });
         return result;
     }
 
@@ -112,7 +112,7 @@ class ContactBook {
     }
 
     addContact() {
-        this.setContactDetails({ firstName: "Name" });
+        this.setContactDetails({ firstName: 'Name' });
         this.toggleContactFormEditing(true);
     }
 
@@ -167,10 +167,10 @@ class ContactBook {
     }
 
     setContactDetails(contactDetails) {
-        this.contactIdField.value = contactDetails._id || "";
-        this.firstNameField.value = contactDetails.firstName || "";
-        this.lastNameField.value = contactDetails.lastName || "";
-        this.phoneField.value = contactDetails.phone || "";
+        this.contactIdField.value = contactDetails._id || '';
+        this.firstNameField.value = contactDetails.firstName || '';
+        this.lastNameField.value = contactDetails.lastName || '';
+        this.phoneField.value = contactDetails.phone || '';
     }
 
     toggleContactFormEditing(isEditing) {
@@ -194,7 +194,7 @@ class ContactBook {
     }
 
     toggleElement(element, isShown) {
-        element.style.display = isShown ? "block" : "none";
+        element.style.display = isShown ? 'block' : 'none';
     }
 
     toggleFade(element, isFade) {
@@ -203,9 +203,9 @@ class ContactBook {
 
     toggleDisabled(element, isDisabled) {
         if(isDisabled) {
-            element.setAttribute("disabled", "");
+            element.setAttribute('disabled', '');
         } else {
-            element.removeAttribute("disabled");
+            element.removeAttribute('disabled');
         }
     }
 }
