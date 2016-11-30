@@ -4,6 +4,7 @@ CACHE MANIFEST
 CACHE:
 index.html
 css/style.css
+js/ext/babel.min.js
 js/ext/pouchdb.min.js
 js/store.js
 js/app.js

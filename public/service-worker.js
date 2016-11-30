@@ -3,7 +3,7 @@ var CACHE_NAME = 'contact-book-v1';
 var resourcesToCache = [
     '/',
     '/css/style.css',
-    '/js/ext/pouchdb.min.js',
+    '/js/ext/babel.min.js',
     '/js/ext/pouchdb.min.js',
     '/js/register-service-worker.js',
     '/js/store.js',
