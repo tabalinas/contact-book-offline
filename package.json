@@ -29,6 +29,7 @@
     "pouchdb-server": "^1.2.1"
   },
   "dependencies": {
+    "babel-standalone": "^6.19.0",
     "pouchdb": "^6.0.7"
   }
 }
