@@ -67,9 +67,9 @@ h1 {
 }
 
 .contact-details-section {
-    float: right;
     width: 22em;
     height: 100%;
+    margin-left: 18em;
     padding: 1em;
 }
 
